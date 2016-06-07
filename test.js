@@ -43,6 +43,7 @@ describe('Postgres Database', function () {
           return console.error('error running query', err);
         console.log(result.rows[0].theTime);
         client.end();
+        done();
       });
     });
   });
