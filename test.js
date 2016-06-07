@@ -1,5 +1,8 @@
 var db = require('./index.js').db,
     expect = require('chai').expect;
+    
+var pg = require('pg');
+var conString = "postgres://postgres@127.0.0.1:5432/app_test";
 
 describe('Postgres Database', function () {
   this.timeout(3000);
@@ -28,6 +31,19 @@ describe('Postgres Database', function () {
         expect(err).to.equal(null);
         done();
       });
+  });
+  it('should retrieve the time', function (done) {
+    var client = new pg.Client(conString);
+    client.connect(function (err) {
+      if (err)
+        return console.error('could not connect to postgres', err);
+
+    client.query('SELECT NOW() AS "theTime"', function (err, result) {
+      if (err)
+        return console.error('error running query', err);
+      console.log(result.rows[0].theTime);
+      client.end();
+    });
   });
   it('should retrieve that name', function (done) {
     db('things')
