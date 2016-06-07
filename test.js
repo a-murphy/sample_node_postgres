@@ -41,7 +41,7 @@ describe('Postgres Database', function () {
       client.query('SELECT * from things;', function (err, result) {
         if (err)
           return console.error('error running query', err);
-        expect(result[0].name).to.equal('Johnson');
+        expect(result.rows[0].name).to.equal('Johnson');
         client.end();
         done();
       });
