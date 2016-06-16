@@ -38,7 +38,7 @@ integrations:
       type: webhook
       payload:
         - commit=$COMMIT
-        - dockerTag=["${DOCKER_TAG}"]
+        - dockerTag=["$DOCKER_TAG"]
         - message=$MESSAGE
         - committer=$COMMITTER
       on_success: never
