@@ -16,6 +16,7 @@ env:
 # Make folders for the reports, and create the SQL db
 build:
   ci:
+    - ssh-agent bash -c 'ssh-add /tmp/ssh/01_deploy; npm install' 
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
