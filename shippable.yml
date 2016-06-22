@@ -18,6 +18,9 @@ build:
   ci:
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
+    - ls
+    - git submodule add git@github.com:a-murphy/testprivate.git testprivate && cd testprivate
+    - ls
     - psql -c 'CREATE DATABASE app_test;' -U postgres
     - npm install
     - npm test
