@@ -16,9 +16,9 @@ env:
 # Make folders for the reports, and create the SQL db
 build:
   ci:
-    - git reset --hard origin/master
+    - if [ "$IS_PULL_REQUEST" == "false" ]; then git reset --hard origin/master; fi
     - ls
-    - git pull origin $BRANCH
+    - if [ "$IS_PULL_REQUEST" == "false" ]; then git pull origin $BRANCH; fi
     - ls
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
