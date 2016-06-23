@@ -16,7 +16,7 @@ env:
 # Make folders for the reports, and create the SQL db
 build:
   ci:
-    - ls node_modules
+    - ls
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
