@@ -1,1 +1,3 @@
-
+[submodule "testprivate"]
+        path = testprivate
+        url = git@github.com:a-murphy/testprivate.git
