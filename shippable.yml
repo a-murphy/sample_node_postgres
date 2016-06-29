@@ -1,11 +1,8 @@
-language: ruby
+language: python
 
 services:
   - postgres
 
 build:
   ci:
-    - psql -c 'create role shippable with superuser;' -U postgres
-    - psql -c 'create database deals_test;' -U postgres
-  on_success:
-    - echo "Cool !!"
+    - echo "Building"
