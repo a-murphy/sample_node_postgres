@@ -1,0 +1,7 @@
+jobs:
+  - name: foo2
+    type: release
+    options:
+      action: none
+    steps:
+      - GET: version-resource-4
