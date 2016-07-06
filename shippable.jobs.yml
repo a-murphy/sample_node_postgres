@@ -4,4 +4,4 @@ jobs:
     options:
       action: none
     steps:
-      - GET: version-resource-4
+      - GET: version-resource-5
