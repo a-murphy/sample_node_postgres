@@ -36,12 +36,9 @@ build:
 
 integrations:
   notifications:
-    - integrationName: "Start"
-      type: webhook
-      payload:
-        - commit=$COMMIT
-        - dockerTag=["$DOCKER_TAG"]
-        - message=$MESSAGE
-        - committer=$COMMITTER
+    - integrationName: "Slack"
+      type: slack
+      recipients:
+        - aidans-test-channel
       on_success: never
       on_start: always
