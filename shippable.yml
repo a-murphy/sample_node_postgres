@@ -5,6 +5,7 @@ services:
 
 build:
   ci:
+    - ifconfig
     - |
       export SHIPPABLE_DB_HOST=127.0.0.1
       export SHIPPABLE_DB_NAME=shippable
