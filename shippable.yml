@@ -6,7 +6,7 @@ services:
 build:
   ci:
     - |
-      export SHIPPABLE_DB_HOST=localhost
+      export SHIPPABLE_DB_HOST=127.0.0.1
       export SHIPPABLE_DB_NAME=shippable
       export SHIPPABLE_DB_USER=root
       export SHIPPABLE_DB_PASS=root
