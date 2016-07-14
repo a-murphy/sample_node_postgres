@@ -45,13 +45,6 @@ integrations:
       on_start: always
       
       integrations:
-  deploy:
-    - integrationName: AWS
-      type: aws
-      target: eb_docker
-      application_name: "beanstalk_application"
-      env_name: "beanstalkApplicatio-env"
-      bucket_name: "elasticbeanstalk-us-west-2-544102397216"
-      region: "us-west-2"
-      image_name: "library/mongo"
-      image_tag: "latest"
+  hub:
+    - integrationName: GCR
+      type: gcr
