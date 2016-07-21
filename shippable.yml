@@ -3,9 +3,7 @@ language: php
 
 php:
  - 5.4
-
-script: phpunit UnitTest
-
+ 
 env:
   global:
     - EB_TOOLS_DIR=/tmp/eb_tools EB_VERSION=AWS-ElasticBeanstalk-CLI-2.6.3 EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
