@@ -1,29 +1,38 @@
-language: node_js
 
-# Services used by app
-services:
-  - postgres
+language: php
 
-node_js:
-  - 0.10.25
+php:
+ - 5.4
 
-# For xunit-file module to put results in shippable folder
+script: phpunit UnitTest
+
 env:
-  - XUNIT_FILE=shippable/testresults/result.xml
+  global:
+    - EB_TOOLS_DIR=/tmp/eb_tools EB_VERSION=AWS-ElasticBeanstalk-CLI-2.6.3 EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
+    - EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
 
-# Postgres binds to 127.0.0.1 by default and is started on boot. Default username is "postgres" with no password
-# Create a DB as part of before script to use it
-# Make folders for the reports, and create the SQL db
-build:
-  ci:
-    - mkdir -p shippable/testresults
-    - mkdir -p shippable/codecoverage
-    - psql -c 'CREATE DATABASE app_test;' -U postgres
-#    - npm install
-#    - npm test
-# Generate coverage report with istanbul
-  #post_ci:
-    #- psql -c 'create database if not exists test;' -U postgres
-    #- ./node_modules/.bin/istanbul cover grunt -- -u tdd
-    #- ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --ui=bdd --reporter=xunit-file
-    #- ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
+before_install:  
+  - if [ ! -e $EB_TOOLS ]; then wget -q -O /tmp/eb.zip https://s3.amazonaws.com/elasticbeanstalk/cli/$EB_VERSION.zip && mkdir -p $EB_TOOLS_DIR && unzip /tmp/eb.zip -d $EB_TOOLS_DIR; fi
+
+before_script:
+  - mkdir -p shippable/testresults;
+  - mkdir -p shippable/codecoverage;
+  - mysql -e 'create database if not exists test;'
+  - mkdir -p ~/.elasticbeanstalk;
+
+script:
+  - mkdir -p .elasticbeanstalk;
+  - if [ $BRANCH == "develop" ]; then cp bsconfig .elasticbeanstalk/config; fi
+  - if [ $BRANCH == "master" ]; then cp bsconfigprod .elasticbeanstalk/config; fi
+
+after_success:
+  - $EB_TOOLS/AWSDevTools/Linux/AWSDevTools-RepositorySetup.sh;
+  - export PATH=$PATH:$EB_TOOLS/eb/linux/python2.7/ && virtualenv ve && source ve/bin/activate && pip install boto==2.14.0;
+
+  # include
+branches:
+  only:
+    - develop
+    - master
+
+cache: true
