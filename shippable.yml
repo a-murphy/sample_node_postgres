@@ -1,13 +1,9 @@
+language: php
 
-language: node_js
+php:
+  - 5.6
 
-node_js:
- - 0.10
- 
-script:
-  - curl -L  https://github.com/kubernetes/kubernetes/releases/download/v1.3.2/kubernetes.tar.gz > kubernetes.tar.gz
-  - tar -xf kubernetes.tar.gz
-  - cp kubernetes/platforms/linux/amd64/kubectl /usr/local/bin/kubectl
-  - chmod +x /usr/local/bin/kubectl
-  - kubectl --version
-
+build:
+  ci:
+    - echo "date.timezone=Europe/Berlin" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - pickle install --ansi fileinfo
