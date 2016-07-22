@@ -1,36 +1,13 @@
 
-language: php
+language: node_js
 
-php:
- - 5.4
+node_js:
+ - 0.10
  
-env:
-  global:
-    - EB_TOOLS_DIR=/tmp/eb_tools EB_VERSION=AWS-ElasticBeanstalk-CLI-2.6.3 EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
-    - EB_TOOLS=$EB_TOOLS_DIR/$EB_VERSION
-
-#before_install:  
-#  - if [ ! -e $EB_TOOLS ]; then wget -q -O /tmp/eb.zip https://s3.amazonaws.com/elasticbeanstalk/cli/$EB_VERSION.zip && mkdir -p $EB_TOOLS_DIR && unzip /tmp/eb.zip -d $EB_TOOLS_DIR; fi
-
-before_script:
-  - mkdir -p shippable/testresults;
-  - mkdir -p shippable/codecoverage;
-  - mysql -e 'create database if not exists test;'
-  - mkdir -p ~/.elasticbeanstalk;
-
 script:
-  - mkdir -p .elasticbeanstalk;
-  - if [ $BRANCH == "develop" ]; then cp bsconfig .elasticbeanstalk/config; fi
-  - if [ $BRANCH == "master" ]; then cp bsconfigprod .elasticbeanstalk/config; fi
+  - curl -L  https://github.com/kubernetes/kubernetes/releases/download/v1.3.2/kubernetes.tar.gz > kubernetes.tar.gz
+  - tar -xf kubernetes.tar.gz
+  - cp kubernetes/platforms/linux/amd64/kubectl /usr/local/bin/kubectl
+  - chmod +x /usr/local/bin/kubectl
+  - kubectl --version
 
-after_success:
-  - $EB_TOOLS/AWSDevTools/Linux/AWSDevTools-RepositorySetup.sh;
-  - export PATH=$PATH:$EB_TOOLS/eb/linux/python2.7/ && virtualenv ve && source ve/bin/activate && pip install boto==2.14.0;
-
-  # include
-branches:
-  only:
-    - develop
-    - master
-
-cache: true
