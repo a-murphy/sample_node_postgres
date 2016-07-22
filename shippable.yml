@@ -6,4 +6,4 @@ php:
 build:
   ci:
     - echo "date.timezone=Europe/Berlin" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-    - pear install fileinfo
+    - pecl install fileinfo
