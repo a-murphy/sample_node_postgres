@@ -4,6 +4,4 @@ jobs:
     options:
       action: none
     steps:
-      - GET: version-resource-5
-      - GET: version-resource-3
-      - GET: version-resource-4
+      - GET: mongo-image
