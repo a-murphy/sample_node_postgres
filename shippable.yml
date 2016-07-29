@@ -1,6 +1,11 @@
 language: node_js
 
 build:
+  pre_ci_boot
+    image_name: drydock/u14nod
+    image_tag: prod
+    pull: true
+    options: "-v $SHIPPABLE_BUILD_DIR/test:$SHIPPABLE_BUILD_DIR/test"
   ci:
     - mkdir -p test
     - touch test/test1.txt
