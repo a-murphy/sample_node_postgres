@@ -5,7 +5,7 @@ build:
     image_name: drydock/u14nod
     image_tag: prod
     pull: true
-    options: "-v $SHIPPABLE_BUILD_DIR/test:$SHIPPABLE_BUILD_DIR/test"
+    options: "-v $SHIPPABLE_BUILD_DIR:$SHIPPABLE_BUILD_DIR"
   ci:
     - mkdir -p test
     - touch test/test1.txt
