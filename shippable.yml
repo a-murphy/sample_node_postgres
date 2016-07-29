@@ -9,4 +9,4 @@ build:
   ci:
     - mkdir -p test
     - touch test/test1.txt
-    - docker run -v $SHIPPABLE_BUILD_DIR/test:$SHIPPABLE_BUILD_DIR/test ubuntu "ls $SHIPPABLE_BUILD_DIR/test"
+    - docker run -v $SHIPPABLE_BUILD_DIR/test:$SHIPPABLE_BUILD_DIR/test ubuntu /bin/sh -c "ls $SHIPPABLE_BUILD_DIR/test"
