@@ -1,5 +1,8 @@
 language: node_js
 
+env:
+  - secure: ONuOfxlpxgP34mRtRJbr9Egh1heSLHJ5YCvIx4ygUC1Mx5ix/jxWI6HsSlIhYeIHu9blHp8RR4vGfDKO02vX8ZQf5CuKgtPeXN+NCO8i3LZSpWXgsE7TxMl4UrkRym6kzUFHPgGy8ch1km2LE2+2+YaEqYkjd1LZ9UiSfH9s5fMFVLgNBLMlmwKCEVK8D917zOrpimAtJRo4X6Db1MF0lX2+mccDqBB1+9GojTmfCVMDqnWUTcTRlYI//oGaJfEFw7tvLU5P7as6VK+rR8l2JFHkKUFoCDKWeIZzVTx/UaekG7MEPbleOH/7Qz33NT74JAvLorILOoX8cz/WJ58irQ==
+
 build:
   pre_ci_boot:
     image_name: drydock/u14nod
@@ -7,6 +10,7 @@ build:
     pull: true
     options: "-v /home/shippable/test:/home/shippable/test"
   ci:
+    - echo $test
     - mkdir -p /home/shippable/test
     - touch /home/shippable/test/test3.txt
     - docker run -v /home/shippable/test:/home/shippable/test ubuntu /bin/sh -c "ls /home/shippable/test"
