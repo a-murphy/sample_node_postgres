@@ -10,3 +10,4 @@ build:
     - mkdir -p /home/shippable/test
     - touch /home/shippable/test/test3.txt
     - docker run -v /home/shippable/test:/home/shippable/test ubuntu /bin/sh -c "ls /home/shippable/test"
+
