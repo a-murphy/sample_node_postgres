@@ -3,6 +3,7 @@ language: node_js
 jdk:
    - oraclejdk8
    - openjdk7
+   - openjdk6
 
 build:
   pre_ci_boot:
@@ -12,6 +13,7 @@ build:
     options: "-v /home/shippable/test:/home/shippable/test"
   ci:
     - echo $JAVA_HOME
+    - java -version
     - mkdir -p /home/shippable/test
     - touch /home/shippable/test/test3.txt
     - docker run -v /home/shippable/test:/home/shippable/test ubuntu /bin/sh -c "ls /home/shippable/test"
