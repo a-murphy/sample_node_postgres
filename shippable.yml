@@ -17,7 +17,7 @@ services:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14jav
+    image_name: drydock/u14javpls
     image_tag: prod
     pull: true
   ci:
