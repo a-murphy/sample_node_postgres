@@ -25,7 +25,7 @@ describe('Postgres Database', function () {
     db('things')
       .insert({ name: 'Johnson' })
       .exec(function (err) {
-        expect(err).to.equal(null);
+        expect(err).to.equal(true);
         done();
       });
   });
