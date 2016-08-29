@@ -30,6 +30,7 @@ build:
     - psql -c 'CREATE DATABASE app_test;' -U postgres
     - npm install
     - npm test
+
 # Generate coverage report with istanbul
   on_success:
     #  - psql -c 'create database if not exists test;' -U postgres
