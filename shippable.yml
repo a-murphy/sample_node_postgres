@@ -23,6 +23,8 @@ build:
   ci:
     - echo $JAVA_HOME
     - java -version
+    - cat /home/shippable/cexec/build.sh
+    - docker inspect $SHIPPABLE_BUILD_CONTAINER
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
