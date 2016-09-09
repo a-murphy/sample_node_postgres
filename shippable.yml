@@ -4,9 +4,7 @@ node_js:
   - 0.10.24
 
 jdk:
-   - oraclejdk8
    - openjdk7
-   - openjdk6
    
 # For xunit-file module to put results in shippable folder
 env:
@@ -17,7 +15,7 @@ services:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14pytpls
+    image_name: drydock/u14rubpls
     image_tag: prod
     pull: true
   ci:
