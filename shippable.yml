@@ -15,7 +15,7 @@ services:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14cloall
+    image_name: drydock/u14all
     image_tag: prod
     pull: true
   ci:
