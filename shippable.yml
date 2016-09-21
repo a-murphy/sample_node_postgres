@@ -19,10 +19,9 @@ build:
     image_tag: prod
     pull: true
   ci:
+    - apt-get update
     - echo $JAVA_HOME
     - java -version
-    - cat /home/shippable/cexec/build.sh
-    - docker inspect $SHIPPABLE_CONTAINER_NAME
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
