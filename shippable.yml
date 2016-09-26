@@ -19,8 +19,8 @@ build:
     image_tag: prod
     pull: true
   ci:
-    - apt-get update
-    - echo $JAVA_HOME
+  #  - apt-get update
+  #  - echo $JAVA_HOME
     - java -version
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
