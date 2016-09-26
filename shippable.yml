@@ -42,7 +42,7 @@ integrations:
       recipients:
         - aidans-test-channel
       on_success: never
-      on_start: always
+ #     on_start: always
       
       integrations:
   hub:
