@@ -23,7 +23,7 @@ build:
   #  - echo $JAVA_HOME
     - java -version
     - mkdir -p shippable/testresults
-    - mkdir -p shippable/codecoverage
+  #  - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
   #  - npm install
    # - npm test
