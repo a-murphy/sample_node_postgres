@@ -16,7 +16,6 @@ services:
 branches:
   only:
     - v*
-  except:
     - master
 
 build:
