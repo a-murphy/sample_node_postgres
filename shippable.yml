@@ -16,6 +16,8 @@ services:
 branches:
   only:
     - v*
+  except:
+    - master
 
 build:
   pre_ci_boot:
