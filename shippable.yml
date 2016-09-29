@@ -21,7 +21,7 @@ branches:
 build:
   pre_ci_boot:
     image_name: amurphy/u16
-    image_tag: test1
+    image_tag: test2
     pull: true
   ci:
   #  - apt-get update
