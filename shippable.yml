@@ -14,7 +14,7 @@ services:
   - postgres
 
 branches:
-  only
+  only:
     - v*
 
 build:
