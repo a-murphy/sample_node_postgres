@@ -13,6 +13,10 @@ env:
 services:
   - postgres
 
+branches:
+  only
+    - v*
+
 build:
   pre_ci_boot:
     image_name: drydock/u14all
