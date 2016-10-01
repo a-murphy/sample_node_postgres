@@ -20,7 +20,7 @@ branches:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u16cloall
+    image_name: drydock/u16pytall
     image_tag: tip
     pull: true
   ci:
