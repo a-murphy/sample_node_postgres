@@ -14,6 +14,9 @@ services:
   - postgres
 
 build:
+  pre_ci:
+    - which docker
+    - which docker-compose
   pre_ci_boot:
     image_name: drydock/u14gol
     image_tag: prod
