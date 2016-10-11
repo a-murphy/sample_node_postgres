@@ -18,6 +18,7 @@ build:
     image_name: drydock/u14gol
     image_tag: prod
     pull: true
+    options: "-v /opt/docker/docker-compose:/usr/bin/docker-compose"
   ci:
   #  - apt-get update
   #  - echo $JAVA_HOME
