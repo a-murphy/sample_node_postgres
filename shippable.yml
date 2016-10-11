@@ -15,7 +15,7 @@ services:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14all
+    image_name: drydock/u14gol
     image_tag: prod
     pull: true
   ci:
@@ -25,6 +25,8 @@ build:
     - mkdir -p shippable/testresults
   #  - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
+    - which docker
+    - which docker-compose
   #  - npm install
    # - npm test
 
