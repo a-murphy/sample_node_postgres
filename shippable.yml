@@ -18,8 +18,7 @@ build:
     options: -v $SHIPPABLE_BUILD_DIR
 
   ci:
-    - docker run --rm --volumes-from $SHIPPABLE_CONTAINER_NAME drydock/u14jav:prod ls $SHIPPABLE_BUILD_DIR
-    
+    - docker run --rm --volumes-from $SHIPPABLE_CONTAINER_NAME drydock/u14jav:prod touch $SHIPPABLE_BUILD_DIR/test.txt
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
