@@ -2,9 +2,6 @@ language: node_js
 
 node_js:
   - 0.10.24
-
-jdk:
-   - openjdk7
    
 # For xunit-file module to put results in shippable folder
 env:
@@ -14,29 +11,20 @@ services:
   - postgres
 
 build:
-#  pre_ci:
-#    - which docker
-#    - which docker-compose
   pre_ci_boot:
-    image_name: drydock/u14gol
+    image_name: drydock/u14nod
     image_tag: prod
     pull: true
-    options: "-v /opt/docker/docker-compose:/usr/bin/docker-compose"
-  ci:
-  #  - apt-get update
-  #  - echo $JAVA_HOME
-    - java -version
-    - mkdir -p shippable/testresults
-  #  - mkdir -p shippable/codecoverage
-  #  - psql -c 'CREATE DATABASE app_test;' -U postgres
-    - which docker
-   # - "curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m`  > /usr/local/bin/docker-compose"
-   # - chmod +x /usr/local/bin/docker-compose
-    - pip install docker-compose
-    - which docker-compose
-  #  - npm install
-   # - npm test
+    options: -v $SHIPPABLE_BUILD_DIR
 
+  ci:
+    - docker run --rm --volumes-from $SHIPPABLE_CONTAINER_NAME drydock/u14jav:prod ls $SHIPPABLE_BUILD_DIR
+    
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+    - psql -c 'CREATE DATABASE app_test;' -U postgres
+    - ls
+ 
 # Generate coverage report with istanbul
   on_success:
     #  - psql -c 'create database if not exists test;' -U postgres
