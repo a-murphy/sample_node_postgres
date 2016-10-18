@@ -12,7 +12,7 @@ services:
 
 build:
   pre_ci_boot:
-    image_name: drydock/u14nod
+    image_name: drydock/u14nodall
     image_tag: prod
     pull: true
     options: -v $SHIPPABLE_BUILD_DIR
