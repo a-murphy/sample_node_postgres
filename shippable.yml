@@ -2,9 +2,6 @@ language: node_js
 
 node_js:
   - 0.10.24
-
-jdk:
-   - openjdk7
    
 # For xunit-file module to put results in shippable folder
 env:
@@ -13,32 +10,24 @@ env:
 services:
   - postgres
 
-branches:
-  only:
-    - v*
-    - master
-
 build:
   pre_ci_boot:
     image_name: drydock/u16pytall
     image_tag: tip
     pull: true
   ci:
-  #  - apt-get update
-  #  - echo $JAVA_HOME
-    - java -version
-  #  - mkdir -p shippable/testresults
-  #  - mkdir -p shippable/codecoverage
-  #  - psql -c 'CREATE DATABASE app_test;' -U postgres
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
+    - psql -c 'CREATE DATABASE app_test;' -U postgres
     - npm install
     - npm test
 
 # Generate coverage report with istanbul
   on_success:
-    #  - psql -c 'create database if not exists test;' -U postgres
+    - psql -c 'create database if not exists test;' -U postgres
     - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --ui=bdd --reporter=xunit-file
-  #  - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
- # on_failure:
-    #  - psql -c 'create database if not exists test;' -U postgres
- #   - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --ui=bdd --reporter=xunit-file
- #   - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
+    - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
+  on_failure:
+    - psql -c 'create database if not exists test;' -U postgres
+    - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --ui=bdd --reporter=xunit-file
+    - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
