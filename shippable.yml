@@ -21,7 +21,7 @@ build:
     - mv /etc/ssl/private-copy /etc/ssl/private
     - chmod -R 0700 /etc/ssl/private
     - chown -R postgres /etc/ssl/private
-    - sudo -u postgres /usr/lib/postgresql/$SHIPPABLE_POSTGRES_VERSION/bin/postgres -c config_file=/etc/postgresql/9.5/main/postgresql.conf > /dev/null 2>&1 &
+    - sudo -u postgres /usr/lib/postgresql/$SHIPPABLE_POSTGRES_VERSION/bin/postgres -c config_file=/etc/postgresql/9.5/main/postgresql.conf # > /dev/null 2>&1 &
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
