@@ -26,10 +26,10 @@ build:
 
 # Generate coverage report with istanbul
   on_success:
-    - psql -c 'create database if not exists test;' -U postgres
+    - psql -c 'create database test;' -U postgres
     - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --ui=bdd --reporter=xunit-file
     - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
   on_failure:
-    - psql -c 'create database if not exists test;' -U postgres
+    - psql -c 'create database test;' -U postgres
     - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --ui=bdd --reporter=xunit-file
     - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
