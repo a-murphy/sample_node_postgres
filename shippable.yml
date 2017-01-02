@@ -22,7 +22,7 @@ build:
     - chmod -R 0700 /etc/ssl/private
     - chown -R postgres /etc/ssl/private
     - sudo -u postgres /usr/lib/postgresql/9.5/bin/postgres -c config_file=/etc/postgresql/9.5/main/postgresql.conf > /dev/null 2>&1 &
-    - psql -c 'CREATE USER postgres;' -U root
+    - psql -c 'CREATE USER postgres;'
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
     - psql -c 'CREATE DATABASE app_test;' -U postgres
