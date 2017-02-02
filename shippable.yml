@@ -16,7 +16,7 @@ build:
     image_tag: tip
     pull: true
   ci:
-    - echo "localhost local.test" > /etc/hosts
+    - echo "localhost local.test" >> /etc/hosts
     - cat /etc/hosts
     - ping local.test
     - sudo su -c "sudo -u postgres /usr/lib/postgresql/9.6/bin/postgres -c config_file=/etc/postgresql/9.6/main/postgresql.conf > /dev/null 2>&1 &"
