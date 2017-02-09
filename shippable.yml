@@ -7,8 +7,8 @@ node_js:
 env:
   - XUNIT_FILE=shippable/testresults/result.xml
 
-#services:
-#  - postgres
+services:
+  - postgres
 
 build:
   pre_ci_boot:
@@ -16,7 +16,7 @@ build:
     image_tag: tip
     pull: true
   ci:
-    - sudo su -c "sudo -u postgres /usr/lib/postgresql/9.6/bin/postgres -c config_file=/etc/postgresql/9.6/main/postgresql.conf > /dev/null 2>&1 &"
+#    - sudo su -c "sudo -u postgres /usr/lib/postgresql/9.6/bin/postgres -c config_file=/etc/postgresql/9.6/main/postgresql.conf > /dev/null 2>&1 &"
     - psql -c 'SELECT version();' -U postgres
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
